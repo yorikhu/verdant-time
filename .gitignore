@@ -141,3 +141,13 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Electron
+dist/
+*.dmg
+*.exe
+*.deb
+*.rpm
+*.AppImage
+/build/
+/out/

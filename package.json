@@ -1,0 +1,63 @@
+{
+  "name": "verdant-time",
+  "version": "1.0.0",
+  "description": "A Verdant Time Pomodoro Timer - 青植番茄钟",
+  "main": "dist/main/index.js",
+  "author": "yorikhu",
+  "license": "MIT",
+  "scripts": {
+    "prestart": "npm run build:ts",
+    "start": "electron .",
+    "predev": "npm run build:ts",
+    "dev": "electron . --enable-logging",
+    "build": "npm run build:ts && npm run build:renderer && electron-builder",
+    "build:ts": "tsc",
+    "build:renderer": "vite build",
+    "watch:ts": "tsc --watch",
+    "watch:renderer": "vite build --watch"
+  },
+  "dependencies": {
+    "preact": "^10.19.3",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.8.1",
+    "@types/node": "^20.10.6",
+    "electron": "^32.0.0",
+    "electron-builder": "^25.0.0",
+    "esbuild": "0.19.12",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10"
+  },
+  "build": {
+    "appId": "com.verdant-time.app",
+    "productName": "Verdant Time",
+    "directories": {
+      "output": "dist-app",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-renderer/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "build/icon.icns"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "build/icon.png"
+    }
+  }
+}

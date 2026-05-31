@@ -1,0 +1,86 @@
+/**
+ * CSS 变量定义
+ * 基于设计稿的配色方案
+ */
+
+:root {
+  /* 春日草莓主题（默认） */
+  --color-primary: #e6f7e6;
+  --color-secondary: #4caf50;
+  --color-accent: #8bc34a;
+  --color-background: #e6f7e6;
+  --color-surface: #ffffff;
+  --color-text: #333333;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+  --color-border: #f0f0f0;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+
+  /* 字体 */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei',
+    'PingFang SC', sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 3rem;
+  --font-size-4xl: 4rem;
+
+  /* 间距 */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* 圆角 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* 过渡 */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.16);
+}
+
+/* 海洋微风主题 */
+[data-theme='ocean-breeze'] {
+  --color-primary: #e0f2fe;
+  --color-secondary: #0891b2;
+  --color-accent: #06b6d4;
+  --color-background: #e0f2fe;
+}
+
+/* 日落余晖主题 */
+[data-theme='sunset-glow'] {
+  --color-primary: #fef3c7;
+  --color-secondary: #c2410c;
+  --color-accent: #ea580c;
+  --color-background: #fef3c7;
+}
+
+/* 静谧夜空主题 */
+[data-theme='night-sky'] {
+  --color-primary: #1e1b4b;
+  --color-secondary: #6366f1;
+  --color-accent: #8b5cf6;
+  --color-background: #1e1b4b;
+  --color-surface: #312e81;
+  --color-text: #e0e7ff;
+  --color-text-secondary: #a5b4fc;
+  --color-border: #4f46e5;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+}
