@@ -13,7 +13,9 @@ function createWindow(): void {
     width: 1200,
     height: 800,
     minWidth: 900,
-    minHeight: 700,
+    minHeight: 600,
+    maxWidth: 1600,
+    maxHeight: 1067,
     frame: false, // 完全移除窗口边框和标题栏
     titleBarStyle: 'hidden', // 隐藏标题栏
     webPreferences: {
@@ -25,6 +27,10 @@ function createWindow(): void {
     backgroundColor: '#F8F5F0',
     transparent: false,
   });
+
+  // 锁定窗口比例 3:2
+  const aspectRatio = 3 / 2;
+  mainWindow.setAspectRatio(aspectRatio);
 
   // Load the index.html of the app
   mainWindow.loadFile(path.join(__dirname, '../../dist-renderer/index.html'));
