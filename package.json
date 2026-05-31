@@ -9,9 +9,10 @@
   "scripts": {
     "dev": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer && electron dist/main/index.js",
     "build": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer && electron-builder --win --dir --config.win.signAndEditExecutable=false",
-    "build:prod": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer && electron-builder --config.win.signAndEditExecutable=false",
+    "build:prod": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer:prod && electron-builder --config.win.signAndEditExecutable=false",
     "build:ts": "tsc",
-    "build:renderer": "vite build",
+    "build:renderer": "vite build --mode development",
+    "build:renderer:prod": "vite build --mode production",
     "build:preload": "esbuild src/preload/index.ts --bundle --platform=node --target=es2020 --format=cjs --outfile=dist/preload/index.js --external:electron"
   },
   "dependencies": {

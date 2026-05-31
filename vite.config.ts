@@ -2,8 +2,23 @@ import { defineConfig } from 'vite';
 import preact from '@preact/preset-vite';
 import path from 'path';
 
+// 自定义插件：打印不同的构建模式消息
+function buildModePlugin() {
+  return {
+    name: 'build-mode-indicator',
+    configResolved(config: { mode: string }) {
+      const mode = config.mode;
+      if (mode === 'production') {
+        console.log('\x1b[36m%s\x1b[0m', 'vite building for production release...');
+      } else if (mode === 'development') {
+        console.log('\x1b[33m%s\x1b[0m', 'vite building for development test...');
+      }
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [preact()],
+  plugins: [preact(), buildModePlugin()],
   root: 'src/renderer',
   resolve: {
     alias: {
