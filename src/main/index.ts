@@ -32,8 +32,8 @@ function createWindow(): void {
     transparent: false,
   });
 
-  // 锁定窗口比例 9:8
-  const aspectRatio = 9 / 8;
+  // 锁定窗口比例 1:1 正方形
+  const aspectRatio = 1;
   mainWindow.setAspectRatio(aspectRatio);
 
   // Load the index.html of the app

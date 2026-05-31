@@ -61,33 +61,33 @@ export function App() {
             onSkip={skip}
           />
         </div>
-
-        {/* 时长选择和番茄统计 - 卡片形式 */}
-        <div class="stats-card">
-          <div class="stats-card-left">
-            <DurationSelector
-              focusDuration={focusDuration}
-              shortBreakDuration={shortBreakDuration}
-              longBreakDuration={longBreakDuration}
-              longBreakAfter={longBreakAfter}
-              onFocusDurationChange={(value) => {
-                console.log('Focus duration:', value);
-              }}
-              onShortBreakDurationChange={(value) => {
-                console.log('Short break duration:', value);
-              }}
-              onLongBreakDurationChange={(value) => {
-                console.log('Long break duration:', value);
-              }}
-            />
-          </div>
-          <div class="stats-card-right">
-            <PomodoroStats
-              completedPomodoros={completedPomodoros}
-            />
-          </div>
-        </div>
       </main>
+
+      {/* 时长选择和番茄统计 - 卡片形式 */}
+      <div class="stats-card">
+        <div class="stats-card-left">
+          <DurationSelector
+            focusDuration={focusDuration}
+            shortBreakDuration={shortBreakDuration}
+            longBreakDuration={longBreakDuration}
+            longBreakAfter={longBreakAfter}
+            onFocusDurationChange={(value) => {
+              console.log('Focus duration:', value);
+            }}
+            onShortBreakDurationChange={(value) => {
+              console.log('Short break duration:', value);
+            }}
+            onLongBreakDurationChange={(value) => {
+              console.log('Long break duration:', value);
+            }}
+          />
+        </div>
+        <div class="stats-card-right">
+          <PomodoroStats
+            completedPomodoros={completedPomodoros}
+          />
+        </div>
+      </div>
 
       {/* 底部信息栏 - 贴住底部 */}
       <InfoBar />
