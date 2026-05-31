@@ -6,11 +6,11 @@
   "author": "yorikhu",
   "license": "MIT",
   "scripts": {
-    "prestart": "npm run build:ts",
+    "prestart": "pnpm build:ts",
     "start": "electron .",
-    "predev": "npm run build:ts",
+    "predev": "pnpm run build:ts",
     "dev": "electron . --enable-logging",
-    "build": "npm run build:ts && npm run build:renderer && electron-builder",
+    "build": "pnpm run build:ts && pnpm run build:renderer && electron-builder",
     "build:ts": "tsc",
     "build:renderer": "vite build",
     "watch:ts": "tsc --watch",
@@ -45,7 +45,8 @@
       "target": [
         "nsis"
       ],
-      "icon": "build/icon.ico"
+      "icon": "build/icon.ico",
+      "sign": null
     },
     "mac": {
       "target": [

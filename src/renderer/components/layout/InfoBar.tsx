@@ -1,8 +1,7 @@
 /**
- * 底部信息栏组件
+ * 底部信息栏组件 - 左中右结构
  */
-import { useState, useEffect } from 'preact/hooks';
-import { getTodayQuote } from '../../utils/quotes';
+import { useState } from 'preact/hooks';
 import { WHITE_NOISES, THEMES } from '../../../shared/constants';
 import { useSettingsStore } from '../../store/settingsStore';
 
@@ -12,23 +11,8 @@ interface InfoBarProps {
 
 export function InfoBar({ longBreakAfter }: InfoBarProps) {
   const { selectedNoise, setSelectedNoise, selectedTheme, setSelectedTheme } = useSettingsStore();
-  const [quote, setQuote] = useState(getTodayQuote());
   const [showNoiseMenu, setShowNoiseMenu] = useState(false);
   const [showThemeMenu, setShowThemeMenu] = useState(false);
-
-  // 每天更新语录
-  useEffect(() => {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);
-
-    const timeout = setTimeout(() => {
-      setQuote(getTodayQuote());
-    }, tomorrow.getTime() - Date.now());
-
-    return () => clearTimeout(timeout);
-  }, []);
 
   const handleNoiseSelect = (noiseId: string | null) => {
     setSelectedNoise(noiseId);
@@ -53,7 +37,7 @@ export function InfoBar({ longBreakAfter }: InfoBarProps) {
         >
           <span class="info-icon">🎵</span>
           <span class="info-text">
-            白噪音：{currentNoise ? currentNoise.name : '关闭'}
+            {currentNoise ? currentNoise.name : '白噪音'}
           </span>
         </button>
 
@@ -80,10 +64,12 @@ export function InfoBar({ longBreakAfter }: InfoBarProps) {
         )}
       </div>
 
-      {/* 中间：鸡汤语录 */}
-      <div class="info-bar-item quote-item">
-        <span class="info-icon">🌱</span>
-        <span class="info-text quote-text">{quote.text}</span>
+      {/* 中间：提示信息 */}
+      <div class="info-bar-item center-item">
+        <span class="info-icon">💡</span>
+        <span class="info-text">
+          完成{longBreakAfter}颗番茄后，进入长休息
+        </span>
       </div>
 
       {/* 右侧：皮肤切换 */}
@@ -93,7 +79,7 @@ export function InfoBar({ longBreakAfter }: InfoBarProps) {
           onClick={() => setShowThemeMenu(!showThemeMenu)}
         >
           <span class="info-icon">🎨</span>
-          <span class="info-text">皮肤：{currentTheme?.name}</span>
+          <span class="info-text">{currentTheme?.name}</span>
         </button>
 
         {showThemeMenu && (
@@ -113,14 +99,6 @@ export function InfoBar({ longBreakAfter }: InfoBarProps) {
             ))}
           </div>
         )}
-      </div>
-
-      {/* 提示信息 */}
-      <div class="info-bar-item hint-item">
-        <span class="info-icon">💡</span>
-        <span class="info-text">
-          完成{longBreakAfter}颗番茄后，进入长休息
-        </span>
       </div>
     </div>
   );

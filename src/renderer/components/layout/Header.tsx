@@ -3,26 +3,32 @@
  */
 import { useViewStore } from '../../store/viewStore';
 
-interface HeaderProps {
-  onHelp?: () => void;
-}
+// 图标映射
+const icons = {
+  focus: 'tomato_active',
+  shortBreak: 'flower',
+  longBreak: 'grass',
+};
 
-export function Header({ onHelp }: HeaderProps) {
+export function Header() {
   const { currentView, setCurrentView } = useViewStore();
 
   const views = [
-    { id: 'timer' as const, label: '专注番茄' },
-    { id: 'shortBreak' as const, label: '短休息' },
-    { id: 'longBreak' as const, label: '长休息' },
-    { id: 'settings' as const, label: '设置' },
+    { id: 'timer' as const, label: '专注番茄', icon: icons.focus },
+    { id: 'shortBreak' as const, label: '短休息', icon: icons.shortBreak },
+    { id: 'longBreak' as const, label: '长休息', icon: icons.longBreak },
   ];
 
-  const handleViewChange = (viewId: 'timer' | 'shortBreak' | 'longBreak' | 'settings') => {
+  const handleViewChange = (viewId: 'timer' | 'shortBreak' | 'longBreak') => {
     setCurrentView(viewId);
   };
 
-  const handleFullscreen = () => {
-    window.electronAPI?.toggleFullscreen();
+  const handleMinimize = () => {
+    window.electronAPI?.minimizeWindow();
+  };
+
+  const handleMaximize = () => {
+    window.electronAPI?.maximizeWindow();
   };
 
   const handleClose = () => {
@@ -31,42 +37,40 @@ export function Header({ onHelp }: HeaderProps) {
 
   return (
     <header class="app-header">
-      <div class="header-left">
-        <div class="app-logo">
-          <span class="logo-icon">🍅</span>
-          <h1 class="app-title">青植番茄钟</h1>
-        </div>
-      </div>
+      {/* 左侧 - 留空或放 logo */}
+      <div class="header-left"></div>
 
+      {/* 中间 - 功能标签居中 */}
       <nav class="header-nav">
-        {views.map((view) => (
-          <button
-            key={view.id}
-            class={`nav-item ${currentView === view.id ? 'active' : ''}`}
-            onClick={() => handleViewChange(view.id)}
-          >
-            {view.label}
-          </button>
-        ))}
+        {views.map((view) => {
+          const isActive = currentView === 'timer' ? view.id === 'timer' : currentView === view.id;
+          return (
+            <button
+              key={view.id}
+              class={`nav-item ${isActive ? 'active' : ''}`}
+              onClick={() => handleViewChange(view.id)}
+            >
+              <img src={`./assets/images/${view.icon}.png`} alt={view.label} class="nav-icon" />
+              <span>{view.label}</span>
+            </button>
+          );
+        })}
       </nav>
 
+      {/* 右侧 - 窗口控制按钮 */}
       <div class="header-right">
-        {onHelp && (
-          <button class="header-btn" onClick={onHelp} title="帮助">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-              <line x1="12" y1="17" x2="12.01" y2="17" />
-            </svg>
-          </button>
-        )}
-        <button class="header-btn" onClick={handleFullscreen} title="全屏">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+        <button class="header-btn" onClick={handleMinimize} title="最小化">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+        </button>
+        <button class="header-btn" onClick={handleMaximize} title="最大化">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
           </svg>
         </button>
         <button class="header-btn close-btn" onClick={handleClose} title="关闭">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>

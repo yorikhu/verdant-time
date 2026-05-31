@@ -1,10 +1,12 @@
 /**
- * 主应用组件
+ * 主应用组件 - 青植番茄钟
  */
 import { useEffect } from 'preact/hooks';
 import { Header } from './layout/Header';
 import { TimerSection } from './layout/TimerSection';
-import { ControlPanel } from './layout/ControlPanel';
+import { ControlButtons } from './controls/ControlButtons';
+import { DurationSelector } from './controls/DurationSelector';
+import { PomodoroStats } from './controls/PomodoroStats';
 import { InfoBar } from './layout/InfoBar';
 import { useTimer } from '../hooks/useTimer';
 import { useSettingsStore } from '../store/settingsStore';
@@ -36,26 +38,34 @@ export function App() {
     document.documentElement.setAttribute('data-theme', selectedTheme);
   }, [selectedTheme]);
 
-  const handleHelp = () => {
-    // 显示帮助对话框
-    alert(
-      '青植番茄钟帮助\n\n' +
-        '快捷键：\n' +
-        'Space - 开始/暂停\n' +
-        'R - 重置计时器\n' +
-        'S - 跳过当前阶段\n\n' +
-        '功能说明：\n' +
-        '• 专注番茄：25分钟专注时间\n' +
-        '• 短休息：5分钟休息\n' +
-        '• 长休息：15分钟长休息（每完成4个番茄后）'
-    );
-  };
-
   return (
     <div class="app" data-theme={selectedTheme}>
-      <Header onHelp={handleHelp} />
+      <Header />
 
       <main class="main-content">
+        {/* 时长选择和番茄统计 - 上方区域 */}
+        <div class="top-section">
+          <DurationSelector
+            focusDuration={focusDuration}
+            shortBreakDuration={shortBreakDuration}
+            longBreakDuration={longBreakDuration}
+            onFocusDurationChange={(value) => {
+              console.log('Focus duration:', value);
+            }}
+            onShortBreakDurationChange={(value) => {
+              console.log('Short break duration:', value);
+            }}
+            onLongBreakDurationChange={(value) => {
+              console.log('Long break duration:', value);
+            }}
+          />
+          <PomodoroStats
+            completedPomodoros={completedPomodoros}
+            totalFocusMinutes={totalFocusMinutes}
+          />
+        </div>
+
+        {/* 时间显示区域 */}
         <TimerSection
           mode={mode}
           remaining={remaining}
@@ -65,29 +75,18 @@ export function App() {
           isPaused={isPaused}
         />
 
-        <ControlPanel
-          isRunning={isRunning}
-          focusDuration={focusDuration}
-          shortBreakDuration={shortBreakDuration}
-          longBreakDuration={longBreakDuration}
-          completedPomodoros={completedPomodoros}
-          totalFocusMinutes={totalFocusMinutes}
-          onReset={reset}
-          onPlayPause={isRunning ? pause : start}
-          onSkip={skip}
-          onFocusDurationChange={(value) => {
-            // TODO: 实现时长更新
-            console.log('Focus duration:', value);
-          }}
-          onShortBreakDurationChange={(value) => {
-            console.log('Short break duration:', value);
-          }}
-          onLongBreakDurationChange={(value) => {
-            console.log('Long break duration:', value);
-          }}
-        />
+        {/* 控制按钮 - 圆环下方居中 */}
+        <div class="bottom-section">
+          <ControlButtons
+            isRunning={isRunning}
+            onReset={reset}
+            onPlayPause={isRunning ? pause : start}
+            onSkip={skip}
+          />
+        </div>
       </main>
 
+      {/* 底部信息栏 - 贴住底部 */}
       <InfoBar longBreakAfter={longBreakAfter} />
     </div>
   );

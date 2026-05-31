@@ -14,15 +14,15 @@ function createWindow(): void {
     height: 800,
     minWidth: 900,
     minHeight: 700,
+    frame: false, // 完全移除窗口边框和标题栏
+    titleBarStyle: 'hidden', // 隐藏标题栏
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.join(__dirname, '../preload/index.js'),
     },
-    titleBarStyle: 'default',
     show: false, // Don't show until ready-to-show
-    backgroundColor: '#e6f7e6',
-    frame: true,
+    backgroundColor: '#F8F5F0',
     transparent: false,
   });
 

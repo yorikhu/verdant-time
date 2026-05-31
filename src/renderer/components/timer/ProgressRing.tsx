@@ -12,8 +12,8 @@ interface ProgressRingProps {
 
 export function ProgressRing({
   progress,
-  size = 280,
-  strokeWidth = 6,
+  size = 300,
+  strokeWidth = 15,
   className = '',
 }: ProgressRingProps) {
   const radius = (size - strokeWidth) / 2;
@@ -27,6 +27,14 @@ export function ProgressRing({
       height={size}
       viewBox={`0 0 ${size} ${size}`}
     >
+      {/* 定义渐变 */}
+      <defs>
+        <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#4CAF50" />
+          <stop offset="100%" stopColor="#81C784" />
+        </linearGradient>
+      </defs>
+
       {/* 背景圆环 */}
       <circle
         class="progress-bg"
@@ -45,12 +53,13 @@ export function ProgressRing({
         r={radius}
         fill="none"
         stroke-width={strokeWidth}
+        stroke="url(#progressGradient)"
         stroke-dasharray={circumference}
         stroke-dashoffset={offset}
         stroke-linecap="round"
       />
 
-      {/* 叶子装饰 */}
+      {/* 叶子装饰 - 在进度环上方 */}
       <g
         class="leaf-decoration"
         style={{
@@ -61,11 +70,19 @@ export function ProgressRing({
         <circle
           cx={size / 2}
           cy={strokeWidth / 2 + 2}
-          r={4}
-          fill="currentColor"
+          r={5}
+          fill="#4CAF50"
           class="leaf-dot"
         />
       </g>
+
+      {/* 底部小番茄装饰 */}
+      <circle
+        cx={size / 2}
+        cy={size - strokeWidth / 2 - 2}
+        r={8}
+        fill="#FF5722"
+      />
     </svg>
   );
 }

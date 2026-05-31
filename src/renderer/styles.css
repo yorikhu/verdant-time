@@ -49,7 +49,7 @@ body {
 
 /* Theme Backgrounds */
 .theme-default .background-layer {
-  background-image: url('../../default_bg.png');
+  background-image: url('./assets/images/default_bg.png');
 }
 
 .theme-ocean .background-layer {

@@ -144,6 +144,8 @@ vite.config.ts.timestamp-*
 
 # Electron
 dist/
+dist-renderer/
+dist-app/
 *.dmg
 *.exe
 *.deb
