@@ -1,20 +1,24 @@
-const electron = require('electron');
-const path = require('path');
-const { registerIPCHandlers } = require('./ipc-handlers');
+import { app, BrowserWindow } from 'electron';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { registerIPCHandlers } from './ipc-handlers.js';
 
-const { app, BrowserWindow } = electron;
+// ESM doesn't have __dirname, so we need to recreate it
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Keep a global reference of the window object
-let mainWindow: any = null;
+let mainWindow: BrowserWindow | null = null;
 
 function createWindow(): void {
   // Create the browser window
   mainWindow = new BrowserWindow({
-    width: 1200,
+    width: 900,
     height: 800,
-    minWidth: 900,
+    minWidth: 750,
     minHeight: 600,
-    maxWidth: 1600,
+    maxWidth: 1200,
     maxHeight: 1067,
     frame: false, // 完全移除窗口边框和标题栏
     titleBarStyle: 'hidden', // 隐藏标题栏
@@ -28,8 +32,8 @@ function createWindow(): void {
     transparent: false,
   });
 
-  // 锁定窗口比例 3:2
-  const aspectRatio = 3 / 2;
+  // 锁定窗口比例 9:8
+  const aspectRatio = 9 / 8;
   mainWindow.setAspectRatio(aspectRatio);
 
   // Load the index.html of the app

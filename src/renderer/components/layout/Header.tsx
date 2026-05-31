@@ -2,12 +2,15 @@
  * 顶部导航栏组件
  */
 import { useViewStore } from '../../store/viewStore';
+import tomatoIcon from '../../assets/images/tomato_active.png';
+import flowerIcon from '../../assets/images/flower.png';
+import grassIcon from '../../assets/images/grass.png';
 
 // 图标映射
 const icons = {
-  focus: 'tomato_active',
-  shortBreak: 'flower',
-  longBreak: 'grass',
+  focus: tomatoIcon,
+  shortBreak: flowerIcon,
+  longBreak: grassIcon,
 };
 
 export function Header() {
@@ -17,7 +20,7 @@ export function Header() {
     { id: 'timer' as const, label: '专注番茄', icon: icons.focus },
     { id: 'shortBreak' as const, label: '短休息', icon: icons.shortBreak },
     { id: 'longBreak' as const, label: '长休息', icon: icons.longBreak },
-  ];
+  ] as const;
 
   const handleViewChange = (viewId: 'timer' | 'shortBreak' | 'longBreak') => {
     setCurrentView(viewId);
@@ -50,7 +53,7 @@ export function Header() {
               class={`nav-item ${isActive ? 'active' : ''}`}
               onClick={() => handleViewChange(view.id)}
             >
-              <img src={`./assets/images/${view.icon}.png`} alt={view.label} class="nav-icon" />
+              <img src={view.icon} alt={view.label} class="nav-icon" />
               <span>{view.label}</span>
             </button>
           );

@@ -5,8 +5,8 @@
     "lib": ["ES2020", "DOM"],
 
     /* Modules */
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -54,6 +54,7 @@
   "exclude": [
     "node_modules",
     "dist",
-    "build"
+    "build",
+    "src/preload"
   ]
 }

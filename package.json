@@ -2,15 +2,17 @@
   "name": "verdant-time",
   "version": "1.0.0",
   "description": "A Verdant Time Pomodoro Timer - 青植番茄钟",
+  "type": "module",
   "main": "dist/main/index.js",
   "author": "yorikhu",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm run build:ts && pnpm run build:renderer && electron . --enable-logging",
-    "build": "pnpm run build:ts && pnpm run build:renderer && electron-builder --win --dir",
-    "build:prod": "pnpm run build:ts && pnpm run build:renderer && electron-builder",
+    "dev": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer && electron . --enable-logging",
+    "build": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer && electron-builder --win --dir --config.win.signAndEditExecutable=false",
+    "build:prod": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer && electron-builder --config.win.signAndEditExecutable=false",
     "build:ts": "tsc",
-    "build:renderer": "vite build"
+    "build:renderer": "vite build",
+    "build:preload": "esbuild src/preload/index.ts --bundle --platform=node --target=es2020 --format=cjs --outfile=dist/preload/index.js --external:electron"
   },
   "dependencies": {
     "preact": "^10.19.3",
@@ -19,6 +21,7 @@
   "devDependencies": {
     "@preact/preset-vite": "^2.8.1",
     "@types/node": "^20.10.6",
+    "cross-env": "^10.1.0",
     "electron": "^32.0.0",
     "electron-builder": "^25.0.0",
     "esbuild": "0.19.12",
@@ -42,7 +45,13 @@
         "nsis"
       ],
       "icon": "build/icon.ico",
-      "sign": null
+      "sign": null,
+      "signingHashAlgorithms": [],
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     },
     "mac": {
       "target": [
