@@ -40,8 +40,10 @@ export function Header() {
 
   return (
     <header class="app-header">
-      {/* 左侧 - 留空或放 logo */}
-      <div class="header-left"></div>
+      {/* 左侧 - 应用名称 */}
+      <div class="header-left">
+        <span class="app-name">青植时间</span>
+      </div>
 
       {/* 中间 - 功能标签居中 */}
       <nav class="header-nav">

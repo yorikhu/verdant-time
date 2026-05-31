@@ -1,18 +1,20 @@
 /**
  * 底部信息栏组件 - 左中右结构
  */
-import { useState } from 'preact/hooks';
+import { useState, useMemo } from 'preact/hooks';
 import { WHITE_NOISES, THEMES } from '../../../shared/constants';
 import { useSettingsStore } from '../../store/settingsStore';
+import { getTodayQuote } from '../../utils/quotes';
 
-interface InfoBarProps {
-  longBreakAfter: number;
-}
+interface InfoBarProps {}
 
-export function InfoBar({ longBreakAfter }: InfoBarProps) {
+export function InfoBar({}: InfoBarProps) {
   const { selectedNoise, setSelectedNoise, selectedTheme, setSelectedTheme } = useSettingsStore();
   const [showNoiseMenu, setShowNoiseMenu] = useState(false);
   const [showThemeMenu, setShowThemeMenu] = useState(false);
+
+  // 获取今日鸡汤
+  const todayQuote = useMemo(() => getTodayQuote(), []);
 
   const handleNoiseSelect = (noiseId: string | null) => {
     setSelectedNoise(noiseId);
@@ -64,11 +66,14 @@ export function InfoBar({ longBreakAfter }: InfoBarProps) {
         )}
       </div>
 
-      {/* 中间：提示信息 */}
+      {/* 中间：鸡汤语录 */}
       <div class="info-bar-item center-item">
-        <span class="info-icon">💡</span>
-        <span class="info-text">
-          完成{longBreakAfter}颗番茄后，进入长休息
+        <svg class="grass-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 2C8 2 5 5 5 8C5 10 6 11 8 11C10 11 11 10 11 8C11 5 8 2 8 2Z" fill="#4CAF50"/>
+          <path d="M8 11V14M5 8C5 8 4 9 4 10M11 8C11 8 12 9 12 10" stroke="#4CAF50" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="info-text quote-text">
+          {todayQuote.text}
         </span>
       </div>
 

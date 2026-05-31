@@ -2,66 +2,73 @@
  * 番茄打卡统计组件
  */
 import { useMemo } from 'preact/hooks';
-import { DAILY_GOAL } from '../../../shared/constants';
+import tomatoActiveIcon from '../../assets/images/tomato_active.png';
+import tomatoDeactiveIcon from '../../assets/images/tomato_deactive.png';
+
+const DISPLAY_COUNT = 5;
 
 interface PomodoroStatsProps {
   completedPomodoros: number;
-  totalFocusMinutes: number;
 }
 
-export function PomodoroStats({ completedPomodoros, totalFocusMinutes }: PomodoroStatsProps) {
-  const tomatoIcons = useMemo(() => {
-    return Array.from({ length: DAILY_GOAL }, (_, i) => ({
-      index: i,
-      completed: i < completedPomodoros,
-    }));
-  }, [completedPomodoros]);
+export function PomodoroStats({ completedPomodoros }: PomodoroStatsProps) {
+  const tomatoDisplay = useMemo(() => {
+    const display = [];
 
-  const progressPercent = useMemo(() => {
-    return Math.min(100, (completedPomodoros / DAILY_GOAL) * 100);
-  }, [completedPomodoros]);
-
-  // 格式化专注时间
-  const formatFocusTime = (minutes: number): string => {
-    if (minutes < 60) {
-      return `${minutes}分钟`;
+    if (completedPomodoros <= DISPLAY_COUNT) {
+      // 5个或更少：显示对应数量的活跃番茄
+      for (let i = 0; i < DISPLAY_COUNT; i++) {
+        display.push({
+          type: 'icon' as const,
+          completed: i < completedPomodoros,
+        });
+      }
+    } else {
+      // 超过5个：前4个显示活跃番茄，第5个显示+数字
+      for (let i = 0; i < DISPLAY_COUNT - 1; i++) {
+        display.push({
+          type: 'icon' as const,
+          completed: true,
+        });
+      }
+      display.push({
+        type: 'more' as const,
+        count: completedPomodoros - (DISPLAY_COUNT - 1),
+      });
     }
-    const hours = Math.floor(minutes / 60);
-    const mins = minutes % 60;
-    return `${hours}小时${mins > 0 ? mins + '分钟' : ''}`;
-  };
+
+    return display;
+  }, [completedPomodoros]);
 
   return (
     <div class="pomodoro-stats">
-      <div class="stats-header">
-        <span class="stats-icon">🍅</span>
-        <span class="stats-title">今日番茄打卡</span>
-      </div>
+      <div class="section-title">今日番茄打卡</div>
 
       <div class="stats-tomatoes">
-        {tomatoIcons.map((tomato) => (
-          <span
-            key={tomato.index}
-            class={`tomato-icon ${tomato.completed ? 'completed' : ''}`}
-          >
-            {tomato.completed ? '✓' : '○'}
-          </span>
-        ))}
+        {tomatoDisplay.map((item, index) => {
+          if (item.type === 'icon') {
+            return (
+              <img
+                key={index}
+                src={item.completed ? tomatoActiveIcon : tomatoDeactiveIcon}
+                alt="tomato"
+                class={`tomato-icon ${item.completed ? 'completed' : ''}`}
+              />
+            );
+          } else {
+            return (
+              <div key={index} class="tomato-more">
+                +{item.count}
+              </div>
+            );
+          }
+        })}
       </div>
 
       <div class="stats-summary">
-        <div class="stats-item">
-          <span class="stats-label">今日总计</span>
-          <span class="stats-value">{completedPomodoros} 颗番茄</span>
-        </div>
-        <div class="stats-item">
-          <span class="stats-label">专注时长</span>
-          <span class="stats-value">{formatFocusTime(totalFocusMinutes)}</span>
-        </div>
-      </div>
-
-      <div class="stats-progress-bar">
-        <div class="stats-progress-fill" style={{ width: `${progressPercent}%` }} />
+        <span class="stats-label">今日总计</span>
+        <span class="stats-value">{completedPomodoros}</span>
+        <span class="stats-unit">个番茄</span>
       </div>
     </div>
   );

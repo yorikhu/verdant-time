@@ -28,7 +28,6 @@ export function App() {
     longBreakDuration,
     longBreakAfter,
     completedPomodoros,
-    totalFocusMinutes,
   } = useTimer();
 
   const { selectedTheme } = useSettingsStore();
@@ -43,28 +42,6 @@ export function App() {
       <Header />
 
       <main class="main-content">
-        {/* 时长选择和番茄统计 - 上方区域 */}
-        <div class="top-section">
-          <DurationSelector
-            focusDuration={focusDuration}
-            shortBreakDuration={shortBreakDuration}
-            longBreakDuration={longBreakDuration}
-            onFocusDurationChange={(value) => {
-              console.log('Focus duration:', value);
-            }}
-            onShortBreakDurationChange={(value) => {
-              console.log('Short break duration:', value);
-            }}
-            onLongBreakDurationChange={(value) => {
-              console.log('Long break duration:', value);
-            }}
-          />
-          <PomodoroStats
-            completedPomodoros={completedPomodoros}
-            totalFocusMinutes={totalFocusMinutes}
-          />
-        </div>
-
         {/* 时间显示区域 */}
         <TimerSection
           mode={mode}
@@ -84,10 +61,36 @@ export function App() {
             onSkip={skip}
           />
         </div>
+
+        {/* 时长选择和番茄统计 - 卡片形式 */}
+        <div class="stats-card">
+          <div class="stats-card-left">
+            <DurationSelector
+              focusDuration={focusDuration}
+              shortBreakDuration={shortBreakDuration}
+              longBreakDuration={longBreakDuration}
+              longBreakAfter={longBreakAfter}
+              onFocusDurationChange={(value) => {
+                console.log('Focus duration:', value);
+              }}
+              onShortBreakDurationChange={(value) => {
+                console.log('Short break duration:', value);
+              }}
+              onLongBreakDurationChange={(value) => {
+                console.log('Long break duration:', value);
+              }}
+            />
+          </div>
+          <div class="stats-card-right">
+            <PomodoroStats
+              completedPomodoros={completedPomodoros}
+            />
+          </div>
+        </div>
       </main>
 
       {/* 底部信息栏 - 贴住底部 */}
-      <InfoBar longBreakAfter={longBreakAfter} />
+      <InfoBar />
     </div>
   );
 }

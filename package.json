@@ -7,7 +7,7 @@
   "author": "yorikhu",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer && electron . --enable-logging",
+    "dev": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer && electron .",
     "build": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer && electron-builder --win --dir --config.win.signAndEditExecutable=false",
     "build:prod": "pnpm run build:preload && pnpm run build:ts && pnpm run build:renderer && electron-builder --config.win.signAndEditExecutable=false",
     "build:ts": "tsc",

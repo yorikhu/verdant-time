@@ -1,4 +1,5 @@
 import type { NotificationOptions } from '../shared/types';
+import type { JSX } from 'preact';
 
 // Electron API 暴露给渲染进程的接口
 export interface ElectronAPI {
@@ -28,6 +29,12 @@ export interface ElectronAPI {
 declare global {
   interface Window {
     electronAPI: ElectronAPI;
+  }
+
+  namespace JSX {
+    interface IntrinsicElements {
+      [tagName: string]: any;
+    }
   }
 }
 

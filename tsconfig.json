@@ -19,6 +19,7 @@
     "sourceMap": true,
     "removeComments": false,
     "noEmitOnError": false,
+    "noEmit": false,
 
     /* Interop Constraints */
     "forceConsistentCasingInFileNames": true,
@@ -49,12 +50,15 @@
     "allowJs": false
   },
   "include": [
-    "src/**/*"
+    "src/main/**/*",
+    "src/shared/**/*"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "build",
-    "src/preload"
+    "src/preload",
+    "src/renderer",
+    "dist-renderer"
   ]
 }

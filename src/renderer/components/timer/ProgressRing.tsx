@@ -26,6 +26,7 @@ export function ProgressRing({
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
+      shape-rendering="geometricPrecision"
     >
       {/* 定义渐变 */}
       <defs>

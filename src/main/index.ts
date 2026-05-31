@@ -14,11 +14,11 @@ let mainWindow: BrowserWindow | null = null;
 function createWindow(): void {
   // Create the browser window
   mainWindow = new BrowserWindow({
-    width: 900,
+    width: 800,
     height: 800,
-    minWidth: 750,
+    minWidth: 700,
     minHeight: 600,
-    maxWidth: 1200,
+    maxWidth: 1100,
     maxHeight: 1067,
     frame: false, // 完全移除窗口边框和标题栏
     titleBarStyle: 'hidden', // 隐藏标题栏
