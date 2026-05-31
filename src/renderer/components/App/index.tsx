@@ -65,28 +65,30 @@ export function App() {
       </main>
 
       {/* 时长选择和番茄统计 - 卡片形式 */}
-      <div class={styles['stats-card']}>
-        <div class={styles['stats-card-left']}>
-          <DurationSelector
-            focusDuration={focusDuration}
-            shortBreakDuration={shortBreakDuration}
-            longBreakDuration={longBreakDuration}
-            longBreakAfter={longBreakAfter}
-            onFocusDurationChange={(value) => {
-              console.log('Focus duration:', value);
-            }}
-            onShortBreakDurationChange={(value) => {
-              console.log('Short break duration:', value);
-            }}
-            onLongBreakDurationChange={(value) => {
-              console.log('Long break duration:', value);
-            }}
-          />
-        </div>
-        <div class={styles['stats-card-right']}>
-          <PomodoroStats
-            completedPomodoros={completedPomodoros}
-          />
+      <div class={styles['stats-card-wrapper']}>
+        <div class={styles['stats-card']}>
+          <div class={styles['stats-card-left']}>
+            <DurationSelector
+              focusDuration={focusDuration}
+              shortBreakDuration={shortBreakDuration}
+              longBreakDuration={longBreakDuration}
+              longBreakAfter={longBreakAfter}
+              onFocusDurationChange={(value) => {
+                console.log('Focus duration:', value);
+              }}
+              onShortBreakDurationChange={(value) => {
+                console.log('Short break duration:', value);
+              }}
+              onLongBreakDurationChange={(value) => {
+                console.log('Long break duration:', value);
+              }}
+            />
+          </div>
+          <div class={styles['stats-card-right']}>
+            <PomodoroStats
+              completedPomodoros={completedPomodoros}
+            />
+          </div>
         </div>
       </div>
 

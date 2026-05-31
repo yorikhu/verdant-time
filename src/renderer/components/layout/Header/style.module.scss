@@ -19,7 +19,6 @@
 
 .header-left,
 .header-right {
-  -webkit-app-region: no-drag;
   flex: 1;
   display: flex;
   align-items: center;
@@ -41,7 +40,6 @@
 .header-nav {
   display: flex;
   gap: 0.5rem;
-  -webkit-app-region: no-drag;
 }
 
 .nav-item {
@@ -57,6 +55,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-base);
+  -webkit-app-region: no-drag;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.7);
@@ -87,6 +86,7 @@
   color: #000000;
   cursor: pointer;
   transition: all var(--transition-fast);
+  -webkit-app-region: no-drag;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.5);

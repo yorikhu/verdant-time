@@ -15,11 +15,11 @@ function createWindow(): void {
   // Create the browser window
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 800,
-    minWidth: 700,
-    minHeight: 600,
-    maxWidth: 1100,
-    maxHeight: 1067,
+    height: 900,
+    minWidth: 640,
+    minHeight: 720,
+    maxWidth: 960,
+    maxHeight: 1080,
     frame: false, // 完全移除窗口边框和标题栏
     titleBarStyle: 'hidden', // 隐藏标题栏
     webPreferences: {
@@ -32,8 +32,8 @@ function createWindow(): void {
     transparent: false,
   });
 
-  // 锁定窗口比例 1:1 正方形
-  const aspectRatio = 1;
+  // 锁定窗口比例 8:9
+  const aspectRatio = 8 / 9;
   mainWindow.setAspectRatio(aspectRatio);
 
   // Load the index.html of the app

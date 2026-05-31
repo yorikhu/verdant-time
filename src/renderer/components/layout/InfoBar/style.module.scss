@@ -16,7 +16,9 @@
   margin-top: auto;
   -webkit-app-region: no-drag;
   flex-shrink: 0;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
+  z-index: 50;
 }
 
 .info-bar-item {
@@ -106,6 +108,15 @@
     background-color: rgba(76, 175, 80, 0.15);
     color: #4CAF50;
   }
+
+  &.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
 }
 
 .dropdown-icon {
@@ -117,6 +128,12 @@
   height: 0.875rem;
   border-radius: 3px;
   border: 1px solid #E0E0E0;
+}
+
+/* 右侧主题菜单从右边对齐 */
+.theme-menu {
+  left: auto;
+  right: 0;
 }
 
 /* 响应式设计 */

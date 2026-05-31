@@ -5,8 +5,9 @@
 
 .timer-display {
   position: relative;
-  width: 22rem;
-  height: 22rem;
+  width: 26.4rem;
+  height: 26.4rem;
+  overflow: visible;
 }
 
 .timer-content {
@@ -15,16 +16,19 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 2;
 }
 
 .time-digits {
   font-size: 6rem;
-  font-weight: bold;
-  color: #2E7D32;
+  font-weight: 600;
+  color: rgba(46, 125, 50, 0.85);
   letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums;
   display: inline-flex;
   align-items: baseline;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3), 0 0 20px rgba(76, 175, 80, 0.2);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 
   &.paused {
     .time-colon {
@@ -70,8 +74,8 @@
 /* 响应式设计 */
 @media (max-width: 56.25rem) {
   .timer-display {
-    width: 18rem;
-    height: 18rem;
+    width: 21.6rem;
+    height: 21.6rem;
   }
 
   .time-digits {
@@ -81,8 +85,8 @@
 
 @media (max-width: 37.5rem) {
   .timer-display {
-    width: 15rem;
-    height: 15rem;
+    width: 18rem;
+    height: 18rem;
   }
 
   .time-digits {

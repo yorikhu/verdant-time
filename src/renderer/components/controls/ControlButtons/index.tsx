@@ -53,9 +53,9 @@ export function ControlButtons({ isRunning, onReset, onPlayPause, onSkip }: Cont
             <rect x="14" y="4" width="4" height="16" rx="1" />
           </svg>
         ) : (
-          // 播放图标（叶子形状）
+          // 播放图标（三角形）
           <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M4 4c0-1.1.9-2 2-2s2 .9 2 2v16c0 1.1-.9 2-2 2s-2-.9-2-2V4zm8 0c0-1.1.9-2 2-2s2 .9 2 2v16c0 1.1-.9 2-2 2s-2-.9-2-2V4z" />
+            <path d="M8 5v14l11-7z" />
           </svg>
         )}
       </button>

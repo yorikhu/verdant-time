@@ -90,19 +90,23 @@ export function InfoBar({}: InfoBarProps) {
 
         {showThemeMenu && (
           <div class={`${styles['dropdown-menu']} ${styles['theme-menu']}`}>
-            {Object.values(THEMES).map((theme) => (
-              <button
-                key={theme.id}
-                class={`${styles['dropdown-item']} ${selectedTheme === theme.id ? styles.active : ''}`}
-                onClick={() => handleThemeSelect(theme.id)}
-              >
-                <span
-                  class={styles['theme-preview']}
-                  style={{ backgroundColor: theme.colors.primary }}
-                />
-                <span>{theme.name}</span>
-              </button>
-            ))}
+            {Object.values(THEMES).map((theme) => {
+              const isEnabled = theme.id === 'spring-strawberry';
+              return (
+                <button
+                  key={theme.id}
+                  class={`${styles['dropdown-item']} ${selectedTheme === theme.id ? styles.active : ''} ${!isEnabled ? styles.disabled : ''}`}
+                  onClick={() => isEnabled && handleThemeSelect(theme.id)}
+                  disabled={!isEnabled}
+                >
+                  <span
+                    class={styles['theme-preview']}
+                    style={{ backgroundColor: theme.colors.primary }}
+                  />
+                  <span>{theme.name}</span>
+                </button>
+              );
+            })}
           </div>
         )}
       </div>
