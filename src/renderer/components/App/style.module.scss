@@ -1,0 +1,101 @@
+/**
+ * App 根组件样式
+ */
+@use 'variables.scss' as *;
+
+/* App 容器 */
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #F8F5F0;
+}
+
+/* 主内容区域 */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  overflow-y: auto;
+  background-image: url('../../assets/images/default_bg.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* 上方区域 - 时长选择 + 番茄统计 */
+.top-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 56.25rem;
+}
+
+/* 统计卡片 */
+.stats-card {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 2rem;
+  width: calc(100% - 48px);
+  max-width: none;
+  padding: 1.5rem 2rem;
+  background-color: rgba(243, 246, 236, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin: 0 24px 16px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.stats-card-left,
+.stats-card-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 下方区域 - 控制按钮 */
+.bottom-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 56.25rem) {
+  .top-section {
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+}

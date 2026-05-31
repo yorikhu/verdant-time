@@ -1,15 +1,15 @@
-import { app, BrowserWindow } from 'electron';
+import electron from 'electron';
+import type { BrowserWindow as BrowserWindowType } from 'electron';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 import { registerIPCHandlers } from './ipc-handlers.js';
 
-// ESM doesn't have __dirname, so we need to recreate it
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const { app, BrowserWindow } = electron;
+
+// ES modules don't have __dirname, use import.meta.dirname in Node.js v20+
+const __dirname = import.meta.dirname ?? path.dirname(new URL(import.meta.url).pathname);
 
 // Keep a global reference of the window object
-let mainWindow: BrowserWindow | null = null;
+let mainWindow: BrowserWindowType | null = null;
 
 function createWindow(): void {
   // Create the browser window

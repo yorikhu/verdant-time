@@ -1,0 +1,104 @@
+/**
+ * 时长选择器样式
+ */
+@use 'variables.scss' as *;
+
+.duration-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #424242;
+  margin-bottom: 1rem;
+}
+
+.duration-items-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.duration-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.duration-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.duration-icon-img {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+}
+
+.duration-label-text {
+  font-size: 0.85rem;
+  color: #424242;
+  font-weight: 500;
+}
+
+.duration-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.duration-input {
+  width: 4.5rem;
+  height: 2rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #BDBDBD;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2E7D32;
+  text-align: center;
+  background-color: #FFFFFF;
+  transition: border-color var(--transition-fast);
+  user-select: text;
+  -webkit-user-select: text;
+
+  &:focus {
+    outline: none;
+    border-color: #4CAF50;
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    opacity: 1;
+  }
+}
+
+.duration-unit {
+  font-size: 0.75rem;
+  color: #757575;
+}
+
+.duration-tip {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.tip-icon {
+  flex-shrink: 0;
+}
+
+.tip-text {
+  font-size: 0.75rem;
+  color: #757575;
+}
+
+.grass-icon {
+  flex-shrink: 0;
+}

@@ -12,6 +12,19 @@ export default defineConfig({
       '@shared': path.resolve(__dirname, './src/shared'),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // 添加全局样式路径，简化导入
+        includePaths: [
+          // 从组件目录向上查找到 styles
+          path.resolve(__dirname, './src/renderer/styles'),
+        ],
+        // 静默警告
+        silenceDeprecations: ['legacy-js-api'],
+      },
+    },
+  },
   build: {
     outDir: '../../dist-renderer',
     emptyOutDir: true,

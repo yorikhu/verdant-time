@@ -1,0 +1,52 @@
+/**
+ * 控制按钮样式
+ */
+@use 'variables.scss' as *;
+
+.control-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.9375rem;
+  -webkit-app-region: no-drag;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #4CAF50;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.btn-reset,
+  &.btn-skip {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  &.btn-play {
+    width: 5rem;
+    height: 5rem;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+
+    &:hover {
+      background-color: #66BB6A;
+      color: #FFFFFF;
+    }
+  }
+}

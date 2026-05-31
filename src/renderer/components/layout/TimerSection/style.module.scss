@@ -1,0 +1,11 @@
+/**
+ * 时间显示区域样式
+ */
+@use 'variables.scss' as *;
+
+.timer-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0.9375rem;
+}

@@ -1,7 +1,8 @@
 /**
  * 时间显示区域组件
  */
-import { TimerDisplay } from '../timer/TimerDisplay';
+import { TimerDisplay } from '../../timer/TimerDisplay';
+import styles from './style.module.scss';
 
 interface TimerSectionProps {
   mode: 'focus' | 'shortBreak' | 'longBreak';
@@ -14,7 +15,7 @@ interface TimerSectionProps {
 
 export function TimerSection(props: TimerSectionProps) {
   return (
-    <section class="timer-section">
+    <section class={styles['timer-section']}>
       <TimerDisplay
         mode={props.mode}
         remaining={props.remaining}

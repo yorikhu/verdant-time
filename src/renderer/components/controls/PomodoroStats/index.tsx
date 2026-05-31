@@ -2,8 +2,9 @@
  * 番茄打卡统计组件
  */
 import { useMemo } from 'preact/hooks';
-import tomatoActiveIcon from '../../assets/images/tomato_active.png';
-import tomatoDeactiveIcon from '../../assets/images/tomato_deactive.png';
+import tomatoActiveIcon from '../../../assets/images/tomato_active.png';
+import tomatoDeactiveIcon from '../../../assets/images/tomato_deactive.png';
+import styles from './style.module.scss';
 
 const DISPLAY_COUNT = 5;
 
@@ -41,10 +42,10 @@ export function PomodoroStats({ completedPomodoros }: PomodoroStatsProps) {
   }, [completedPomodoros]);
 
   return (
-    <div class="pomodoro-stats">
-      <div class="section-title">今日番茄打卡</div>
+    <div class={styles['pomodoro-stats']}>
+      <div class={styles['section-title']}>今日番茄打卡</div>
 
-      <div class="stats-tomatoes">
+      <div class={styles['stats-tomatoes']}>
         {tomatoDisplay.map((item, index) => {
           if (item.type === 'icon') {
             return (
@@ -52,12 +53,12 @@ export function PomodoroStats({ completedPomodoros }: PomodoroStatsProps) {
                 key={index}
                 src={item.completed ? tomatoActiveIcon : tomatoDeactiveIcon}
                 alt="tomato"
-                class={`tomato-icon ${item.completed ? 'completed' : ''}`}
+                class={`${styles['tomato-icon']} ${item.completed ? styles.completed : ''}`}
               />
             );
           } else {
             return (
-              <div key={index} class="tomato-more">
+              <div key={index} class={styles['tomato-more']}>
                 +{item.count}
               </div>
             );
@@ -65,10 +66,10 @@ export function PomodoroStats({ completedPomodoros }: PomodoroStatsProps) {
         })}
       </div>
 
-      <div class="stats-summary">
-        <span class="stats-label">今日总计</span>
-        <span class="stats-value">{completedPomodoros}</span>
-        <span class="stats-unit">个番茄</span>
+      <div class={styles['stats-summary']}>
+        <span class={styles['stats-label']}>今日总计</span>
+        <span class={styles['stats-value']}>{completedPomodoros}</span>
+        <span class={styles['stats-unit']}>个番茄</span>
       </div>
     </div>
   );

@@ -1,0 +1,91 @@
+/**
+ * 时间显示样式
+ */
+@use 'variables.scss' as *;
+
+.timer-display {
+  position: relative;
+  width: 22rem;
+  height: 22rem;
+}
+
+.timer-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.time-digits {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #2E7D32;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  align-items: baseline;
+
+  &.paused {
+    .time-colon {
+      animation: none;
+      opacity: 1;
+    }
+  }
+}
+
+.time-minutes,
+.time-seconds {
+  min-width: 2ch;
+}
+
+.time-colon {
+  margin: 0 0.05em;
+  opacity: 0.7;
+
+  &.blinking {
+    animation: blink 1s ease-in-out infinite;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.2; }
+}
+
+.timer-status {
+  margin-top: 0.625rem;
+  font-size: 1.125rem;
+  color: #4CAF50;
+}
+
+.status-mode {
+  font-weight: 500;
+}
+
+.status-separator {
+  margin: 0 0.25rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 56.25rem) {
+  .timer-display {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .time-digits {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 37.5rem) {
+  .timer-display {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .time-digits {
+    font-size: 4rem;
+  }
+}

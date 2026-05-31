@@ -2,14 +2,15 @@
  * 主应用组件 - 青植番茄钟
  */
 import { useEffect } from 'preact/hooks';
-import { Header } from './layout/Header';
-import { TimerSection } from './layout/TimerSection';
-import { ControlButtons } from './controls/ControlButtons';
-import { DurationSelector } from './controls/DurationSelector';
-import { PomodoroStats } from './controls/PomodoroStats';
-import { InfoBar } from './layout/InfoBar';
-import { useTimer } from '../hooks/useTimer';
-import { useSettingsStore } from '../store/settingsStore';
+import { Header } from '../layout/Header';
+import { TimerSection } from '../layout/TimerSection';
+import { ControlButtons } from '../controls/ControlButtons';
+import { DurationSelector } from '../controls/DurationSelector';
+import { PomodoroStats } from '../controls/PomodoroStats';
+import { InfoBar } from '../layout/InfoBar';
+import { useTimer } from '../../hooks/useTimer';
+import { useSettingsStore } from '../../store/settingsStore';
+import styles from './style.module.scss';
 
 export function App() {
   const {
@@ -38,10 +39,10 @@ export function App() {
   }, [selectedTheme]);
 
   return (
-    <div class="app" data-theme={selectedTheme}>
+    <div class={styles.app} data-theme={selectedTheme}>
       <Header />
 
-      <main class="main-content">
+      <main class={styles['main-content']}>
         {/* 时间显示区域 */}
         <TimerSection
           mode={mode}
@@ -53,7 +54,7 @@ export function App() {
         />
 
         {/* 控制按钮 - 圆环下方居中 */}
-        <div class="bottom-section">
+        <div class={styles['bottom-section']}>
           <ControlButtons
             isRunning={isRunning}
             onReset={reset}
@@ -64,8 +65,8 @@ export function App() {
       </main>
 
       {/* 时长选择和番茄统计 - 卡片形式 */}
-      <div class="stats-card">
-        <div class="stats-card-left">
+      <div class={styles['stats-card']}>
+        <div class={styles['stats-card-left']}>
           <DurationSelector
             focusDuration={focusDuration}
             shortBreakDuration={shortBreakDuration}
@@ -82,7 +83,7 @@ export function App() {
             }}
           />
         </div>
-        <div class="stats-card-right">
+        <div class={styles['stats-card-right']}>
           <PomodoroStats
             completedPomodoros={completedPomodoros}
           />

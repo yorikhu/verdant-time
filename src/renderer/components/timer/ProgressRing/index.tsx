@@ -1,7 +1,8 @@
 /**
  * 圆形进度条组件
  */
-import { getCircleOffset } from '../../utils/time';
+import { getCircleOffset } from '../../../utils/time';
+import styles from './style.module.scss';
 
 interface ProgressRingProps {
   progress: number; // 0-100
@@ -22,7 +23,7 @@ export function ProgressRing({
 
   return (
     <svg
-      class={`progress-ring ${className}`}
+      class={`${styles['progress-ring']} ${className}`}
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
@@ -38,7 +39,7 @@ export function ProgressRing({
 
       {/* 背景圆环 */}
       <circle
-        class="progress-bg"
+        class={styles['progress-bg']}
         cx={size / 2}
         cy={size / 2}
         r={radius}
@@ -48,7 +49,7 @@ export function ProgressRing({
 
       {/* 进度圆环 */}
       <circle
-        class="progress-bar"
+        class={styles['progress-bar']}
         cx={size / 2}
         cy={size / 2}
         r={radius}
@@ -62,7 +63,7 @@ export function ProgressRing({
 
       {/* 叶子装饰 - 在进度环上方 */}
       <g
-        class="leaf-decoration"
+        class={styles['leaf-decoration']}
         style={{
           transform: `rotate(${progress * 3.6}deg)`,
           transformOrigin: 'center',
@@ -73,7 +74,7 @@ export function ProgressRing({
           cy={strokeWidth / 2 + 2}
           r={5}
           fill="#4CAF50"
-          class="leaf-dot"
+          class={styles['leaf-dot']}
         />
       </g>
 

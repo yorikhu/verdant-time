@@ -1,9 +1,10 @@
 /**
  * 时长选择器组件
  */
-import tomatoActiveIcon from "../../assets/images/tomato_active.png";
-import flowerIcon from "../../assets/images/flower.png";
-import grassIcon from "../../assets/images/grass.png";
+import tomatoActiveIcon from "../../../assets/images/tomato_active.png";
+import flowerIcon from "../../../assets/images/flower.png";
+import grassIcon from "../../../assets/images/grass.png";
+import styles from './style.module.scss';
 
 interface DurationItem {
   id: "focus" | "shortBreak" | "longBreak";
@@ -78,19 +79,19 @@ export function DurationSelector({
   };
 
   return (
-    <div class="duration-selector">
-      <div class="section-title">时长自定义</div>
-      <div class="duration-items-row">
+    <div class={styles['duration-selector']}>
+      <div class={styles['section-title']}>时长自定义</div>
+      <div class={styles['duration-items-row']}>
         {items.map((item) => (
-          <div key={item.id} class="duration-item">
-            <div class="duration-row">
-              <img src={item.icon} alt={item.label} class="duration-icon-img" />
-              <span class="duration-label-text">{item.label}</span>
+          <div key={item.id} class={styles['duration-item']}>
+            <div class={styles['duration-row']}>
+              <img src={item.icon} alt={item.label} class={styles['duration-icon-img']} />
+              <span class={styles['duration-label-text']}>{item.label}</span>
             </div>
-            <div class="duration-controls">
+            <div class={styles['duration-controls']}>
               <input
                 type="number"
-                class="duration-input"
+                class={styles['duration-input']}
                 value={item.value}
                 min={item.min}
                 max={item.max}
@@ -102,13 +103,13 @@ export function DurationSelector({
                 }
                 onBlur={(e) => handleInputBlur(item, e)}
               />
-              <span class="duration-unit">分钟</span>
+              <span class={styles['duration-unit']}>分钟</span>
             </div>
           </div>
         ))}
       </div>
-      <div class="duration-tip">
-        <span class="tip-text">完成{longBreakAfter}颗番茄后，进入长休息</span>
+      <div class={styles['duration-tip']}>
+        <span class={styles['tip-text']}>完成{longBreakAfter}颗番茄后，进入长休息</span>
       </div>
     </div>
   );

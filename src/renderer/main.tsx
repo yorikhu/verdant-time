@@ -3,7 +3,7 @@
  */
 import { render } from 'preact';
 import { App } from './components/App';
-import './styles/main.css';
+import './styles/variables.scss';
 
 // 获取根元素
 const root = document.getElementById('app');

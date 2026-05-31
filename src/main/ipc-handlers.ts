@@ -1,6 +1,12 @@
-import { ipcMain, BrowserWindow, Notification } from 'electron';
+import electron from 'electron';
+import type { BrowserWindow } from 'electron';
 import path from 'path';
 import type { NotificationOptions } from '../shared/types';
+
+const { ipcMain, Notification } = electron;
+
+// ES modules don't have __dirname, use import.meta.dirname in Node.js v20+
+const __dirname = import.meta.dirname ?? path.dirname(new URL(import.meta.url).pathname);
 
 export function registerIPCHandlers(mainWindow: BrowserWindow | null): void {
   // Show notification
